@@ -1,0 +1,4 @@
+#!/bin/bash
+# avahi-daemon --daemonize --no-drop-root && python /app/server.py
+# avahi-daemon --no-drop-root && python /app/server.py
+dbus-daemon --system && avahi-daemon --no-drop-roo && python /app/server.py

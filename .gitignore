@@ -1,0 +1,7 @@
+/data
+/lib
+!/lib/local
+/secrets
+/main/**/cache
+**/scratch
+**/tini
