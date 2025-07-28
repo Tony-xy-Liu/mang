@@ -3,5 +3,9 @@
 !/lib/local
 /secrets
 /main/**/cache
+
+**/unsloth_compiled_cache
+**/_unsloth_sentencepiece_temp
+
 **/scratch
 **/tini

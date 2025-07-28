@@ -1,5 +1,9 @@
 # Build the image
-docker build -t minimal-avahi .
+docker build -t flask-avahi-poc .
 
-# Run the container
-docker run --rm --net=host minimal-avahi
+# Run with host networking (required for mDNS)
+docker run -it --rm \
+    --net=host \
+    --mount type=bind,source="./",target="/ws"\
+    --workdir="/ws" \
+    flask-avahi-poc /bin/bash

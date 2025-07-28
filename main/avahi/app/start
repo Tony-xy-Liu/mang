@@ -1,0 +1,2 @@
+#!/bin/bash
+avahi-daemon --no-drop-root -D && python3 /app/app.py
