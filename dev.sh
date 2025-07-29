@@ -13,8 +13,8 @@ VER="$(cat $_ver_file)"
 # CONDA=conda
 CONDA=mamba # https://mamba.readthedocs.io/en/latest/mamba-installation.html#mamba-install
 echo "dev script v$SCRIPT_VERSION"
-echo "for: $NAME"
-if [ -n $DOCKER_IMAGE ]; then
+echo "project: $NAME"
+if [[ -n $DOCKER_IMAGE ]]; then
     echo "oci image: $DOCKER_IMAGE:$VER"
 fi
 echo ""
@@ -111,6 +111,10 @@ case $1 in
     -bs) # apptainer image *from docker*
         apptainer build $NAME.sif docker-daemon://$DOCKER_IMAGE:$VER
     ;;
+    -bu) # buid ui
+        cd $HERE/src/$NAME/ui/${NAME}-ui
+        npm run build
+    ;;
 
     ###################################################
     # upload
@@ -173,13 +177,22 @@ case $1 in
             $HERE/$NAME.sif /bin/bash
             # docker-daemon://$DOCKER_IMAGE:$VER /bin/bash
     ;;
+    -ru) # run ui
+        cd $HERE/src/$NAME/ui/${NAME}-ui
+        npm start
+    ;;
+    -r1)
+        shift
+        export PYTHONPATH=$HERE/src:$PYTHONPATH
+        python -m $NAME $@ ui
+    ;;
 
     ###################################################
     # test
 
-    -t)
-        shift
-        echo "no tests"
+    -t1)
+        cd src/mang
+        gunicorn -c ui/gunicorn.conf.py ui.wsgi
     ;;
 
     ###################################################

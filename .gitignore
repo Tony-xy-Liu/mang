@@ -1,7 +1,6 @@
 /data
 /lib
 !/lib/local
-/secrets
 /main/**/cache
 
 **/unsloth_compiled_cache
@@ -9,3 +8,6 @@
 
 **/scratch
 **/tini
+
+secrets
+__pycache__

@@ -12,3 +12,5 @@ ENTRY_POINTS = [
 
 with open(Path(__file__).parent/"version.txt") as f:
     VERSION = f.read().strip()
+
+BIND = "localhost:8112"
